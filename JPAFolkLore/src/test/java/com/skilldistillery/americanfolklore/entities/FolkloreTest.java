@@ -45,8 +45,11 @@ class FolkloreTest {
 	@Test
 	void test() {
 		assertNotNull(folklore);
-		assertEquals("MOTHMAN", folklore.getName());
-		assertTrue(folklore.toString().contains("giant moth"));
+		assertEquals(folklore.getLoreUrl(), "https://www.youtube.com/watch?v=2jnCwbXaDhM");
+		assertEquals("Mothman", folklore.getName());
+		assertEquals("Creature", folklore.getCategory());
+		assertEquals("West Virginian", folklore.getState());
+		assertEquals(true, folklore.isEnabled());
 	}
 
 }

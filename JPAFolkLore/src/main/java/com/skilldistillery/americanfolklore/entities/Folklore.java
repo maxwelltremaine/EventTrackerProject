@@ -2,6 +2,7 @@ package com.skilldistillery.americanfolklore.entities;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,13 +17,21 @@ public class Folklore {
 	
 	
 	private String name;
+	private String category;
 	private String description;
+	private String state;
+	private String city;
+	private String street;
+	private boolean enabled;
+	@Column(name = "lore_url")
+	private String loreUrl;
 	
 	
 	public Folklore() {
 		super();
 	}
 
+	
 	public int getId() {
 		return id;
 	}
@@ -39,6 +48,14 @@ public class Folklore {
 		this.name = name;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -47,7 +64,48 @@ public class Folklore {
 		this.description = description;
 	}
 
-	
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+	public String getStreet() {
+		return street;
+	}
+
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public String getLoreUrl() {
+		return loreUrl;
+	}
+
+	public void setLoreUrl(String loreUrl) {
+		this.loreUrl = loreUrl;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -67,7 +125,9 @@ public class Folklore {
 
 	@Override
 	public String toString() {
-		return "Folklore [id=" + id + ", name=" + name + ", description=" + description + "]";
+		return "Folklore [id=" + id + ", name=" + name + ", category=" + category + ", description=" + description
+				+ ", state=" + state + ", city=" + city + ", street=" + street + ", enabled=" + enabled + ", loreUrl="
+				+ loreUrl + "]";
 	}
 	
 	

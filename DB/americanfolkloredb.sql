@@ -22,9 +22,14 @@ DROP TABLE IF EXISTS `folklore` ;
 
 CREATE TABLE IF NOT EXISTS `folklore` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(300) NOT NULL,
+  `name` VARCHAR(300) NOT NULL,
+  `category` VARCHAR(100) NOT NULL,
   `description` VARCHAR(2000) NOT NULL,
-  `enabled` TINYINT NULL,
+  `state` VARCHAR(200) NULL,
+  `city` VARCHAR(200) NULL,
+  `street` VARCHAR(300) NULL,
+  `enabled` TINYINT NOT NULL,
+  `lore_url` VARCHAR(1000) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -44,7 +49,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `americanfolkloredb`;
-INSERT INTO `folklore` (`id`, `Name`, `description`, `enabled`) VALUES (1, 'MOTHMAN', 'a giant moth who abducts people', NULL);
+INSERT INTO `folklore` (`id`, `name`, `category`, `description`, `state`, `city`, `street`, `enabled`, `lore_url`) VALUES (1, 'Mothman', 'Creature', 'Giant moth that abducts people', 'West Virginian', 'Point Pleasant', NULL, 1, 'https://www.youtube.com/watch?v=2jnCwbXaDhM');
 
 COMMIT;
 

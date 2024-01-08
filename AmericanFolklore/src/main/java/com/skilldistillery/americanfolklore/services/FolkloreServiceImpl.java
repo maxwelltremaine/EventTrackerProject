@@ -1,6 +1,7 @@
 package com.skilldistillery.americanfolklore.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,26 +22,22 @@ public class FolkloreServiceImpl implements FolkloreService {
 
 	@Override
 	public Folklore getFolklore(int folkloreId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Folklore create(Folklore folklore) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Folklore update(int folkloreId, Folklore folklore) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Folklore> gotFolklore = folkloreRepo.findById(folkloreId);
+		if(gotFolklore.isEmpty()) {
+			return null;
+		}
+		return gotFolklore.get();
+		
 	}
 
 	@Override
 	public boolean deleteById(int folkloreId) {
-		// TODO Auto-generated method stub
-		return false;
+		folkloreRepo.deleteById(folkloreId);
+		if(getFolklore(folkloreId) != null) {
+			return false;
+		}
+		return true;
 	}
+
 
 }
