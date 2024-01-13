@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script  type="text/javascript" src="js/script.js"></script>
+	<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+	<h1>American Folklore</h1>
+	
+	<form name="folkloreForm">
+		<input type="number" name="folkloreId">
+		<button name="lookup">Get Folklore by Id</button>
+	</form>
+
+	
+	<h1>Add New Folklore</h1>
+	
+	<form name="newFolkloreForm">
+		<label for="name">Name:</label>
+		<input type="text" name="name"> <br>
+		<label for="category">Category:</label>
+		<input type="text" name="category"> <br>
+		<label for="description">Description:</label>
+		<input type="text" name="description"> <br>
+		<label for="lore">Lore:</label>
+		<input type="text" name="lore"> <br>
+		<label for="loreUrl">Lore Url</label>
+		<input type="text" name="loreUrl"> <br>
+		<label for="state">State</label>
+		<input type="text" name="state"> <br>
+		<label for="city">City</label>
+		<input type="text" name="city"> <br>
+		<label for="street">Street</label>
+		<input type="text" name="street"> <br>
+		<button name="addFolkloreButton">Add Folklore</button>
+
+
+	</form>
+	
+	
+	<div id="folkloreDiv"></div>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Category</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody id="folkloreBody"></tbody>
+	</table>
+
+
+</body>
+
+</html>

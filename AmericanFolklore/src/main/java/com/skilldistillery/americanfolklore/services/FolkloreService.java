@@ -8,6 +8,7 @@ import com.skilldistillery.americanfolklore.entities.Folklore;
 public interface FolkloreService {
 
 	List<Folklore> getAllFolklore();
-	Folklore getFolklore(int folkloreId);
-	boolean deleteById(int folkloreId);
+	Folklore getFolkloreById(int folkloreId);
+	List<Folklore> getFolkloreByCategory(); 
+
 }

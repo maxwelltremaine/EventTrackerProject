@@ -1,5 +1,7 @@
 package com.skilldistillery.americanfolklore.data;
 
+
+
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.americanfolklore.entities.Folklore;
@@ -30,13 +32,24 @@ public class FolkloreDAOImpl implements FolkloreDAO {
 			existing.setName(folklore.getName());;
 			existing.setCategory(folklore.getCategory());
 			existing.setDescription(folklore.getDescription());
+			existing.setLore(folklore.getLore());
+			existing.setLoreUrl(folklore.getLoreUrl());			
 			existing.setState(folklore.getState());
 			existing.setCity(folklore.getCity());
 			existing.setStreet(folklore.getStreet());
-			existing.setLoreUrl(folklore.getLoreUrl());			
+			existing.setEnabled(true);
 			em.flush();
 		}
 		return existing;
 	}
+
+	@Override
+	public boolean Delete(int folkloreId) {
+		Folklore existing = em.find(Folklore.class, folkloreId);
+		existing.setEnabled(false);
+		em.flush();
+		return true;
+	}
+
 
 }

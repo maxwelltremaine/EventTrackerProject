@@ -17,11 +17,11 @@ public class FolkloreServiceImpl implements FolkloreService {
 	
 	@Override
 	public List<Folklore> getAllFolklore() {
-		return folkloreRepo.findAll();
+		return folkloreRepo.findByEnabledTrue();
 	}
 
 	@Override
-	public Folklore getFolklore(int folkloreId) {
+	public Folklore getFolkloreById(int folkloreId) {
 		Optional<Folklore> gotFolklore = folkloreRepo.findById(folkloreId);
 		if(gotFolklore.isEmpty()) {
 			return null;
@@ -31,13 +31,11 @@ public class FolkloreServiceImpl implements FolkloreService {
 	}
 
 	@Override
-	public boolean deleteById(int folkloreId) {
-		folkloreRepo.deleteById(folkloreId);
-		if(getFolklore(folkloreId) != null) {
-			return false;
-		}
-		return true;
+	public List<Folklore> getFolkloreByCategory() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 
 
 }

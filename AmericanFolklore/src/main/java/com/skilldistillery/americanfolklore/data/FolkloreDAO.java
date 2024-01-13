@@ -5,5 +5,7 @@ import com.skilldistillery.americanfolklore.entities.Folklore;
 public interface FolkloreDAO {
 	Folklore Create(Folklore folklore);
 	Folklore Update(int folkloreId, Folklore folklore);
+	boolean Delete(int folkloreId);
+	
 
 }

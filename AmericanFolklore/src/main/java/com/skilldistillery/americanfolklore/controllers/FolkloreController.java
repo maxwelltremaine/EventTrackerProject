@@ -43,7 +43,7 @@ public class FolkloreController {
 	public Folklore getFolklore(@PathVariable("folkloreId") Integer folkloreId, 
 			HttpServletResponse res
 	) {
-		Folklore folklore = folkloreService.getFolklore(folkloreId);
+		Folklore folklore = folkloreService.getFolkloreById(folkloreId);
 		if (folklore == null) {
 			res.setStatus(404);
 		}
@@ -88,7 +88,7 @@ public class FolkloreController {
 	@DeleteMapping("folklore/{folkloreId}")
 	public void deletePost(@PathVariable("folkloreId") Integer folkloreId, HttpServletResponse res) {
 		try {
-			if ( folkloreService.deleteById(folkloreId) ) {
+			if ( folkloreDao.Delete(folkloreId) ) {
 				res.setStatus(204);
 			}
 			else {
