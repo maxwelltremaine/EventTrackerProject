@@ -17,28 +17,31 @@ function init() {
 	});
 	//set up event handlers, load intial data, etc
 	loadAmericanFolklore();
-}
 
 
-newFolkloreForm.addFolkloreButton.addEventListener('click', function(evt){
+
+	newFolkloreForm.addFolkloreButton.addEventListener('click', function(evt) {
+		let form = document.newFolkloreForm;
 		evt.preventDefault();
 		let newFolklore = {
-			name: newFolkloreForm.title.value,
-			category: newFolkloreForm.category.value,
-			description: newFolkloreForm.description.value,
-			lore: newFolkloreForm.lore.value,
-			loreUrl: newFolkloreForm.loreUrl.value,
-			state: newFolkloreForm.state.value,
-			city: newFolkloreForm.city.value,
-			street: newFolkloreForm.street.value,
+			name: form.name.value,
+			category: form.category.value,
+			description: form.description.value,
+			lore: form.lore.value,
+			loreUrl: form.loreUrl.value,
+			state: form.state.value,
+			city: form.city.value,
+			street: form.street.value
 		};
-		
-		
+
+
 		console.log(newFolklore);
 		addFolklore(newFolklore);
-		
-		
-		});
+
+
+	});
+}
+
 
 function loadAmericanFolklore() {
 
@@ -58,12 +61,33 @@ function loadAmericanFolklore() {
 
 }
 
+
+function deleteFolklore(folkloreId) {
+
+	let xhr = new XMLHttpRequest();
+	xhr.open('DELETE', `api/folklore/${folkloreId}`);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200) {
+				let folklore = JSON.parse(xhr.responseText);
+				console.log(folklore);
+				displayFolklore(folklore);
+
+			}
+		}
+	};
+
+	xhr.send();
+
+}
+
 function displayFolklore(folklore) {
+	console.log(folklore);
 	let tbody = document.getElementById('folkloreBody');
 	for (let singleFolklore of folklore) {
 		let tr = document.createElement('tr');
 		tbody.appendChild(tr);
-		let td= document.createElement('td');
+		let td = document.createElement('td');
 		td.textContent = singleFolklore.id;
 		tr.appendChild(td);
 		td = document.createElement('td');
@@ -75,20 +99,22 @@ function displayFolklore(folklore) {
 		td = document.createElement('td');
 		td.textContent = singleFolklore.description;
 		tr.appendChild(td);
-		
-		tr.addEventListener('click', function(event){
+
+
+
+		tr.addEventListener('click', function(event) {
 			console.log(event.target);
-		let folkloreId = event.target.parentElement.firstElementChild.textContent;
+			let folkloreId = event.target.parentElement.firstElementChild.textContent;
 			getFolkloreDetails(folkloreId);
-			
+
 		});
 	}
 }
 
 function getFolkloreDetails(folkloreId) {
 	console.log('getting details for folklore ' + folkloreId);
-	
-let xhr = new XMLHttpRequest();
+
+	let xhr = new XMLHttpRequest();
 	xhr.open('GET', `api/folklore/${folkloreId}`);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
@@ -105,7 +131,7 @@ let xhr = new XMLHttpRequest();
 }
 
 
-function displaySingleFolklore(folklore){
+function displaySingleFolklore(folklore) {
 	let dataDiv = document.getElementById("folkloreDiv");
 	dataDiv.textContent = '';
 	let name = document.createElement('h1');
@@ -113,10 +139,10 @@ function displaySingleFolklore(folklore){
 	let category = document.createElement('li');
 	category.textContent = "Category " + folklore.category;
 	let description = document.createElement('blockquote');
-	description.textContent = "Description: "+ folklore.description;
+	description.textContent = "Description: " + folklore.description;
 	let lore = document.createElement('blockquote');
 	lore.textContent = "Folklore: " + folklore.lore;
-	let loreUrl =  document.createElement('li');
+	let loreUrl = document.createElement('li');
 	loreUrl.textContent = "Lore Link: " + folklore.loreUrl;
 	let state = document.createElement('li');
 	state.textContent = "State: " + folklore.state;
@@ -132,16 +158,33 @@ function displaySingleFolklore(folklore){
 	dataDiv.appendChild(state);
 	dataDiv.appendChild(city);
 	dataDiv.appendChild(street);
+
+
+	let deleteForm = Document.getElementById();
+	let folkloreId = Document.createElement("input");
+	folkloreId.setAttribute("type", "hidden");
+	folkloreId.setAttribute("value", `${folklore.id}`);
+	deleteForm.appendChild(folkloreId);
+	let submitBtn = Document.createElement("input");
+	submitBtn.setAttribute("type", "submit");
+	deleteForm.appendChild(submitBtn);
+
 }
+function deleteForm() {
+	let deleter = document.createElement('form');
+	deleter.setAttribute('method', 'delete');
+
+}
+
 
 function addFolklore(folklore) {
 	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'api/folklore');
-	xhr.onreadystatechange = function(){
-		if (xhr.readyState === 4 ){
-			if (xhr.status === 201){
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 201) {
 				let createdFolklore = JSON.parse(xhr.responseText);
-				displayFolklore(createdFolklore);
+				displaySingleFolklore(createdFolklore);
 			}
 			else {
 				displayError('Error creating Folklore: ' + xhr.status);
@@ -150,7 +193,29 @@ function addFolklore(folklore) {
 	};
 	xhr.setRequestHeader('Content-type', 'application/json')
 	xhr.send(JSON.stringify(folklore));
-	
+	window.location.reload();
 }
+
+function updateFolklore(folkloreId) {
+	let folkloreToUpdate = getFolkloreDetails(folkloreId);
+	let xhr = new XMLHttpRequest();
+	xhr.open('PUT', `api/folklore/${folkloreId}`);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 201) {
+				let updatedFolklore = JSON.parse(xhr.responseText);
+				displaySingleFolklore(updatedFolklore);
+			}
+			else {
+				displayError('Error creating Folklore: ' + xhr.status);
+			}
+		}
+	};
+	xhr.setRequestHeader('Content-type', 'application/json')
+	xhr.send(JSON.stringify(folklore));
+	window.location.reload();
+}
+
+
 
 

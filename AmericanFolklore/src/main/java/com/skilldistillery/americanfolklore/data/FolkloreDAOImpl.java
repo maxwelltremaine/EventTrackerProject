@@ -21,6 +21,7 @@ public class FolkloreDAOImpl implements FolkloreDAO {
 
 	@Override
 	public Folklore Create(Folklore folklore) {
+		folklore.setEnabled(true);
 		em.persist(folklore);
 		return folklore;
 	}

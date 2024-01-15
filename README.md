@@ -15,5 +15,7 @@ Tech Used
 | PUT       | `/api/folklore/1`   | JSON of a new version of _folklore_ `1` | JSON of updated _folklore_ | 200,404,400 |
 | DELETE    | `/api/folklore/1`   |              |               | 204,404,400|
 
+
+
 ## Lessons Learned
 Before looking into your code to try and resolve issues with controllers or even after checking your code, double check and make sure there are no unecessary capitilizations in the mapping. 

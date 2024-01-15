@@ -4,21 +4,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<script  type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
 	<link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
 	<h1>American Folklore</h1>
 	
-	<form name="folkloreForm">
+	<form name= "folkloreDeleteForm"></form> 
+
+	<form id="folkloreIdLookUpForm" name="folkloreForm">
 		<input type="number" name="folkloreId">
 		<button name="lookup">Get Folklore by Id</button>
 	</form>
+	
 
-	
 	<h1>Add New Folklore</h1>
-	
+
 	<form name="newFolkloreForm">
 		<label for="name">Name:</label>
 		<input type="text" name="name"> <br>
@@ -40,9 +42,10 @@
 
 
 	</form>
-	
-	
+
+
 	<div id="folkloreDiv"></div>
+
 	<table>
 		<thead>
 			<tr>
@@ -54,7 +57,7 @@
 		</thead>
 		<tbody id="folkloreBody"></tbody>
 	</table>
-
+	
 
 </body>
 
