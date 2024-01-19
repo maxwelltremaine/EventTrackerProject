@@ -160,12 +160,13 @@ function displaySingleFolklore(folklore) {
 	dataDiv.appendChild(street);
 
 
-	let deleteForm = Document.getElementById();
-	let folkloreId = Document.createElement("input");
+	
+	let folkloreId = document.createElement("input");
 	folkloreId.setAttribute("type", "hidden");
+	folkloreId.setAttribute("name", "folkloreId");
 	folkloreId.setAttribute("value", `${folklore.id}`);
 	deleteForm.appendChild(folkloreId);
-	let submitBtn = Document.createElement("input");
+	let submitBtn = document.createElement("input");
 	submitBtn.setAttribute("type", "submit");
 	deleteForm.appendChild(submitBtn);
 
