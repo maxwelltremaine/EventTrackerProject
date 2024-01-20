@@ -22,6 +22,9 @@ public class FolkloreDAOImpl implements FolkloreDAO {
 	@Override
 	public Folklore Create(Folklore folklore) {
 		folklore.setEnabled(true);
+		if( folklore.getImageUrl() == null || folklore.getImageUrl().equals("")) {
+			folklore.setImageUrl("https://i.imgur.com/IEdhJoy.jpg");
+		}
 		em.persist(folklore);
 		return folklore;
 	}
@@ -33,11 +36,10 @@ public class FolkloreDAOImpl implements FolkloreDAO {
 			existing.setName(folklore.getName());;
 			existing.setCategory(folklore.getCategory());
 			existing.setDescription(folklore.getDescription());
+			existing.setImageUrl(folklore.getImageUrl());
 			existing.setLore(folklore.getLore());
+			existing.setLocation(folklore.getLocation());
 			existing.setLoreUrl(folklore.getLoreUrl());			
-			existing.setState(folklore.getState());
-			existing.setCity(folklore.getCity());
-			existing.setStreet(folklore.getStreet());
 			existing.setEnabled(true);
 			em.flush();
 		}

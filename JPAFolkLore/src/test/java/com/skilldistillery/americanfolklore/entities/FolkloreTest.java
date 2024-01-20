@@ -48,7 +48,7 @@ class FolkloreTest {
 		assertEquals(folklore.getLoreUrl(), "https://www.youtube.com/watch?v=2jnCwbXaDhM");
 		assertEquals("Mothman", folklore.getName());
 		assertEquals("Creature", folklore.getCategory());
-		assertEquals("West Virginian", folklore.getState());
+		assertEquals("West Virginian", folklore.getLocation());
 		assertEquals(true, folklore.isEnabled());
 	}
 

@@ -19,13 +19,17 @@ public class Folklore {
 	private String name;
 	private String category;
 	private String description;
+	@Column(name = "image_url")
+	private String imageUrl;
 	private String lore;
+	private String location;
 	@Column(name = "lore_url")
 	private String loreUrl;
-	private String state;
-	private String city;
-	private String street;
+	
 	private boolean enabled;
+	
+	//consider switch exclusively to location instead of what is above
+	//if I do rememeber to update in folklore ts in angular
 	
 	
 	public Folklore() {
@@ -119,43 +123,30 @@ public class Folklore {
 
 
 
-	public String getState() {
-		return state;
+
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
 
 
 
-	public void setState(String state) {
-		this.state = state;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 
 
 
-	public String getCity() {
-		return city;
+	public String getLocation() {
+		return location;
 	}
 
 
 
 
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-
-
-
-	public String getStreet() {
-		return street;
-	}
-
-
-
-
-	public void setStreet(String street) {
-		this.street = street;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 
@@ -195,8 +186,8 @@ public class Folklore {
 	@Override
 	public String toString() {
 		return "Folklore [id=" + id + ", name=" + name + ", category=" + category + ", description=" + description
-				+ ", lore=" + lore + ", loreUrl=" + loreUrl + ", state=" + state + ", city=" + city + ", street="
-				+ street + ", enabled=" + enabled + "]";
+				+ ", imageUrl=" + imageUrl + ", lore=" + lore + ", location=" + location + ", loreUrl=" + loreUrl
+				+ ", enabled=" + enabled + "]";
 	}
 	
 	
