@@ -5,6 +5,8 @@ export class Folklore {
   name: String;
   category: String;
   description: String;
+  imageUrl: String;
+  location: String;
   lore: String;
   loreUrl: String;
 
@@ -14,6 +16,8 @@ constructor(
   name: String = "",
   category: String = "",
   description: String = "",
+  imageUrl: String = "",
+  location: String = "",
   lore: String = "",
   loreUrl: String = "",
 ){
@@ -21,6 +25,8 @@ constructor(
   this.name = name ;
   this.category = category;
   this.description = description;
+  this.imageUrl = imageUrl;
+  this.location = location;
   this.lore = lore;
   this.loreUrl = loreUrl;
 }
