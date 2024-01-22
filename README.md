@@ -5,8 +5,13 @@ This tracker was created to track stories and tales that encompass American folk
 
 ## Tech Used
 JPACRUDProject
-Description
-Tech Used
+Angular
+css
+html
+typescript
+mysql
+springtoolsuite4
+
 | HTTP Verb | URI               | Request Body | Response Body | Status Codes |
 |-----------|-------------------|--------------|---------------|---------|
 | GET       | `/api/folklore`      |              | List of all _folklore_ entities | 200 |

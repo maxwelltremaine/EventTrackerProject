@@ -41,6 +41,9 @@ public class FolkloreDAOImpl implements FolkloreDAO {
 			existing.setLocation(folklore.getLocation());
 			existing.setLoreUrl(folklore.getLoreUrl());			
 			existing.setEnabled(true);
+			if(existing.getImageUrl() == null || folklore.getImageUrl().equals("")) {
+				existing.setImageUrl("https://i.imgur.com/IEdhJoy.jpg");
+			}
 			em.flush();
 		}
 		return existing;

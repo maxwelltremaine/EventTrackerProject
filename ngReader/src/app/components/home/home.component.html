@@ -1,22 +1,87 @@
-<h1>American Folklore</h1>
+<h1 class="pageTitle">American Folklore</h1>
 <br>
 
-
+<!-- add click event to minimize this table or open it -->
 <div class="container">
+  <form name="newFolkloreForm" *ngIf="!selected">
+
+    <h4>Add New Folklore</h4> <br>
+    <h5>Name:</h5><input [(ngModel)]="newFolklore.name" type="text" name="name" />
+    <h5>Category:</h5><input [(ngModel)]="newFolklore.category" type="text" name="category" />
+    <h5>Description:</h5><input [(ngModel)]="newFolklore.description" type="text" name="description" />
+    <h5>Image Url:</h5><input [(ngModel)]="newFolklore.imageUrl" type="text" name="imageUrl" />
+    <h5>Location:</h5><input [(ngModel)]="newFolklore.location" type="text" name="location" />
+    <h5>Lore:</h5><input [(ngModel)]="newFolklore.lore" type="text" name="lore" />
+    <h5>Lore Url:</h5><input [(ngModel)]="newFolklore.loreUrl" type="text" name="loreUrl" />
+
+    <br><button (click)="addFolklore(newFolklore)">Add Folklore</button>
+  </form>
+</div>
+
+
+<div class="container" *ngIf="!selected">
   <div class="row">
+    <div *ngFor="let folklore of folkloreList" class="card" style="width: 18rem;">
+      <img (click)="displayFolklore(folklore)" class="card-img-top img-fluid w-100" src="{{folklore.imageUrl}}" alt="Card image cap"
+        alt=" Responsive image">
+      <div class="card-body">
+        <h1 (click)="displayFolklore(folklore)"> {{folklore.name}}</h1>
+        <h5>Category:</h5>
+        <h3>{{folklore.category}}</h3>
+        <h5>Description: </h5>
+        <p class="card-text">{{folklore.description}}</p>
 
+      </div>
+      <div class="card-footer">
 
-<div  *ngFor="let folklore of folkloreList" class="card" style="width: 18rem;" >
-  <img class="card-img-top img-fluid w-100"  src="{{folklore.imageUrl}}" alt="Card image cap" alt=" Responsive image">
-  <div class="card-body">
-    <h1>{{folklore.name}}</h1>
-   <h5>Category:</h5> <h3>{{folklore.category}}</h3>
-   <h5>Description: </h5>
-    <p class="card-text">{{folklore.description}}</p>
-  </div>
-  <div class="card-footer">
-  <button type="button" class="btn btn-outline-warning btn-lrg">edit</button>
-  <button type="button" class="btn btn-outline-danger btn-lrg">Delete</button>
+        <button type="button" class="btn btn-outline-danger btn-lrg" (click)="deleteFolklore(folklore.id)">Delete</button>
+      </div>
+    </div>
   </div>
 </div>
+<div *ngIf="editFolklore">
+  <form>
+    <label for="name">Name</label>
+    <input [(ngModel)]="editFolklore.name" type="text" name="Name"><br>
+
+    <label for="Category">Category</label>
+    <input [(ngModel)]="editFolklore.category" type="text" name="Category"><br>
+
+    <label for="location">Location</label>
+    <input [(ngModel)]="editFolklore.location" type="text" name="location"><br>
+
+    <label for="description">Description</label>
+    <input [(ngModel)]="editFolklore.description" type="text" name="Description"><br>
+
+    <label for="imageUrl">ImageUrl</label>
+    <input [(ngModel)]="editFolklore.imageUrl" type="text" name="imageUrl"><br>
+
+    <label for="lore">Lore</label>
+    <input [(ngModel)]="editFolklore.lore" type="text" name="Lore"><br>
+
+    <label for="loreUrl">LoreUrl</label>
+    <input [(ngModel)]="editFolklore.loreUrl" type="url" name="LoreUrl"><br>
+
+    <button (click)="editFolklore = null">Cancel</button>
+    <button (click)="updateFolklore(editFolklore)">Save</button>
+  </form>
+</div>
+
+
+<div *ngIf="selected && !editFolklore">
+  <img class="card-img-top img-fluid w-100" src="{{selected.imageUrl}}" alt="Card image cap" alt=" Responsive image">
+  <h2>{{selected.name}}</h2>
+  <h3>Category: {{selected.category}}</h3>
+  <h3>Location: {{selected.location}}</h3>
+  <h3>Description:</h3>
+  <blockquote>{{selected.description}}</blockquote>
+  <h3>Lore:</h3>
+  <blockquote>{{selected.lore}}</blockquote>
+  <p> LoreUrl: {{selected.loreUrl}} </p>
+
+    <button  class="btn btn-outline-warning btn-lrg" (click)="displayTable()">Back</button>
+    <button type="button" class="btn btn-outline-warning btn-lrg" (click)="setEditFolklore() ">edit</button>
+</div>
+
+
 

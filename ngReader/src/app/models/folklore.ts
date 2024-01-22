@@ -9,6 +9,7 @@ export class Folklore {
   location: String;
   lore: String;
   loreUrl: String;
+  enabled: boolean;
 
 
 constructor(
@@ -20,6 +21,8 @@ constructor(
   location: String = "",
   lore: String = "",
   loreUrl: String = "",
+  enabled: boolean = true
+
 ){
   this.id = id;
   this.name = name ;
@@ -29,5 +32,6 @@ constructor(
   this.location = location;
   this.lore = lore;
   this.loreUrl = loreUrl;
+  this.enabled = enabled;
 }
 }

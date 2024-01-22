@@ -24,10 +24,10 @@ export class FolkloreService {
   }
 
   public create(newFolklore: Folklore): Observable<Folklore> {
-    newFolklore.name = '';
-    newFolklore.category = '';
-    newFolklore.description = '';
-    newFolklore.imageUrl = '';
+    newFolklore.name;
+    newFolklore.category;
+    newFolklore.description;
+    newFolklore.imageUrl;
     newFolklore.location;
     newFolklore.lore;
     newFolklore.loreUrl;
@@ -43,19 +43,7 @@ export class FolkloreService {
   }
 
   public update(editFolklore: Folklore): Observable<Folklore> {
-    if (editFolklore.name === null || '') {
-      //FIX ME SO IT WILLL RETURN AN ERROR IF THIS IS ATTEMPTED
-    }
-    if (editFolklore.description === null || '') {
-        //FIX ME SO IT WILLL RETURN AN ERROR IF THIS IS ATTEMPTED
-      }
-    if (editFolklore.category){
-      //FIX ME SO IT WILLL RETURN AN ERROR IF THIS IS ATTEMPTED or returna  message
-      //saying it cannot be empty
-    }
-    return this.http
-      .put<Folklore>(this.url + '/' + editFolklore.id, editFolklore)
-      .pipe(
+    return this.http.put<Folklore>(this.url + '/' + editFolklore.id, editFolklore).pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError(
@@ -68,7 +56,7 @@ export class FolkloreService {
       );
   }
 
-  Delete(id: number): Observable<void> {
+  delete(id: number): Observable<void> {
     return this.http.delete<void>(this.url + '/' + id).pipe(
       catchError((err: any) => {
         console.log(err);
